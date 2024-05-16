@@ -38,37 +38,41 @@ const handleSubmit=(event)=>{
     <div className="App">
       <div className="container pt-5">
         <div className='app-title'>  
-        <h2 className='text-white mb-5 text-center'>Get  the current weather</h2>     
+        <h1 className='text-white pb-4 text-center'>Get  the current weather</h1>     
         </div>
-      <div className='searchbar'>
-        <form onSubmit={handleSubmit}>
-          <div className='search-box d-flex'>
-<input type="search" value={input} onChange={(e)=>setInput(e.target.value)}  placeholder="Search"/>
+        <form onSubmit={handleSubmit} className='form-search pb-5'>
+          <div className='row'>
+         
+          <div className='search-box col'>
+<input type="search" value={input} onChange={(e)=>setInput(e.target.value)}  placeholder="Enter city name" className='searchInput'/>
 
+</div>
 </div>
         </form>
-    </div>
-  <div className='text-white'>
+   
+  <div className='text-white cardBox'>
+<div className='heading'>
 
-{(typeof data.main!= "undefined") ?   (   <p className='mb-4'>{data.name}</p>) :(<div className='mb-3'>Search...</div>)}
+
+{(typeof data.main!= "undefined") ?   (   <h1 className='mb-4'>{data.name}</h1>) :(<div className='mb-3'>Search...</div>)}
  
-  <p>{day}, {month} {date}, {year}</p>
-</div>
+  <h4>{day}, {month} {date}, {year}</h4>
 
+  </div>
 
 {(typeof data.main!= "undefined") ? (
 
   <>
   
 
-<div className='details'>
+<div className='details '>
 <div className='temp'>
 <h2>{data.main.temp}°F</h2>
 </div>
 <div className='weather mt-4 mb-4'>
  <h4>{data.weather[0].main}</h4> 
 </div>
-<div className='bottom d-flex justify-content-evenly'>
+<div className='d-flex bottom justify-content-evenly'>
   <div className='feels'>
    <p className='bold'> {data.main.feels_like}°F</p>
     <p>Feels Like</p>
@@ -87,6 +91,7 @@ const handleSubmit=(event)=>{
 </>
 ) : ('')
 }
+</div>
 </div>
 </div>
 
