@@ -25,6 +25,7 @@ body{
 .search-box{
   position: relative;
   text-align: center;
+  padding-top: 2rem;
 }
 .search-box input{
   padding: .5rem 1.5rem;
@@ -33,6 +34,7 @@ body{
   color: white;
   border-radius: 10px;
   border: none;
+  
   background: rgba(255,255,255,0.1);
 }
 ::placeholder{
@@ -44,31 +46,41 @@ body{
 
 }
 .details{
+ 
 text-align: center;
 }
+.humidity{
+  border-radius: 10px;
+}
 .details p{
-  font-size: 28px;
+  font-size: 24px;
 
 }
 
 .bold{
   font-weight: 700;
 }
-
+.card_box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  background: rgba(0, 0, 0, 0.3) ;
+  border-radius: 10px;
+  width: 180px;
+}
+.card_box p{
+  margin-bottom: inherit;
+}
 .cardBox{
   padding: 1rem;
   border-radius: 12px;
   background:rgba(0, 0, 0, 0.2) ;
   margin: 1rem auto;
   text-align: center;
-  max-width: 500px;
+  max-width: 600px;
 }
-.heading{
-  padding-bottom: 3rem;
-}
-.bottom p{
-  padding: 0.7rem;
-}
+
 .searchbar{
   max-width: 20rem;
   margin-bottom: 2rem;
@@ -76,13 +88,20 @@ text-align: center;
 .searchInput:focus{
 outline: none;
 }
+.bottom{
+  padding-left: 5px;
+}
 @media screen and (max-width:768px) {
 .App:before{
   background-size: contain;
   height: auto;
 }
-  .bottom{
+  .features{
   flex-direction:column ;
+  align-items: center;
+}
+.features .card_box{
+  margin-top: 2rem;
 }
 
 }

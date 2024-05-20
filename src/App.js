@@ -2,11 +2,14 @@
 import './App.css';
 import {BsSearch} from "react-icons/bs"
 import { useEffect, useState } from 'react';
-
+import { FaWind } from "react-icons/fa";
+import { BsDroplet } from "react-icons/bs";
+import { FaTemperatureLow } from "react-icons/fa";
 function App() {
   const [data,setData]=useState([])
   const [location,setLocation]=useState('London')
   const [input,setInput]=useState('')
+  
 let componentMounted=true
 
 const d=new Date()
@@ -36,19 +39,20 @@ const handleSubmit=(event)=>{
   return (
   
     <div className="App">
-      <div className="container pt-5">
+      <div className=" pt-5">
         <div className='app-title'>  
         <h1 className='text-white pb-4 text-center'>Get  the current weather</h1>     
         </div>
-        <form onSubmit={handleSubmit} className='form-search pb-4'>
+      
+   
+  <div className='text-white cardBox'>
+  <form onSubmit={handleSubmit} className='form-search pb-4'>
          
-          <div className='search-box'>
+         <div className='search-box'>
 <input type="search" value={input} onChange={(e)=>setInput(e.target.value)}  placeholder="Enter city name" className='searchInput'/>
 <butto className="btn btn-info text-white"><BsSearch/></butto>
 </div>
-        </form>
-   
-  <div className='text-white cardBox'>
+       </form>
 <div className='heading'>
 
 
@@ -63,25 +67,36 @@ const handleSubmit=(event)=>{
   <>
   
 
-<div className='details '>
+<div className='details mt-4'>
 <div className='temp'>
 <h2>{data.main.temp}°F</h2>
 </div>
 <div className='weather mt-4 mb-4'>
  <h4>{data.weather[0].main}</h4> 
 </div>
-<div className='d-flex bottom justify-content-evenly'>
-  <div className='feels'>
-   <p className='bold'> {data.main.feels_like}°F</p>
-    <p>Feels Like</p>
+<div className='features d-flex justify-content-evenly'>
+  <div className='feels card_box'>
+<FaTemperatureLow fontSize={32}/>
+    <div className='bottom'>
+    <p>Feels </p>
+    <p className='bold'> {data.main.feels_like}°F</p>
+    </div>
   </div>
-<div className='humidity'>
+<div className='humidity card_box'>
+<BsDroplet fontSize={32}/>
+<div className='bottom'>
+<p>Humidity</p>
 <p className='bold'>{data.main.humidity}%</p>
-  <p>Humidity</p>
 </div>
-<div className='wind'>
+
+</div>
+<div className='wind card_box'>
+  <FaWind fontSize={32}/>
+  <div className='bottom'>
+<p >Wind </p>
 <p className='bold'> {data.wind.speed} MPH</p>
-<p >Wind Speed</p>
+  </div>
+
 </div>
 </div>
 </div>
