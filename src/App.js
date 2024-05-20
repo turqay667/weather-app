@@ -40,7 +40,7 @@ const handleSubmit=(event)=>{
         <div className='app-title'>  
         <h1 className='text-white pb-4 text-center'>Get  the current weather</h1>     
         </div>
-        <form onSubmit={handleSubmit} className='form-search pb-5'>
+        <form onSubmit={handleSubmit} className='form-search pb-4'>
          
           <div className='search-box'>
 <input type="search" value={input} onChange={(e)=>setInput(e.target.value)}  placeholder="Enter city name" className='searchInput'/>
