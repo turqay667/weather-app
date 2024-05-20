@@ -41,12 +41,10 @@ const handleSubmit=(event)=>{
         <h1 className='text-white pb-4 text-center'>Get  the current weather</h1>     
         </div>
         <form onSubmit={handleSubmit} className='form-search pb-5'>
-          <div className='row'>
          
-          <div className='search-box col'>
+          <div className='search-box'>
 <input type="search" value={input} onChange={(e)=>setInput(e.target.value)}  placeholder="Enter city name" className='searchInput'/>
-
-</div>
+<butto className="btn btn-info text-white"><BsSearch/></butto>
 </div>
         </form>
    
