@@ -23,7 +23,7 @@ const fetchWeather=async()=>{
 const response=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=ff2b0f18235b8cf43d40e92641f6aae1`)
 if(componentMounted){
   setData(await response.json())
-  console.log(data)
+
 }
 return ()=>{
 componentMounted=false
@@ -50,7 +50,7 @@ const handleSubmit=(event)=>{
          
          <div className='search-box'>
 <input type="search" value={input} onChange={(e)=>setInput(e.target.value)}  placeholder="Enter city name" className='searchInput'/>
-<butto className="btn btn-info text-white"><BsSearch/></butto>
+<button className="btn btn-info text-white"><BsSearch/></button>
 </div>
        </form>
 <div className='heading'>
