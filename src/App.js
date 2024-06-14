@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import { FaWind } from "react-icons/fa";
 import { BsDroplet } from "react-icons/bs";
 import { FaTemperatureLow } from "react-icons/fa";
+import { FaCloud } from "react-icons/fa";
+import { FaCloudRain } from "react-icons/fa";
 function App() {
   const [data,setData]=useState([])
   const [location,setLocation]=useState('London')
@@ -17,6 +19,7 @@ const date=d.getDate()
 const day=d.toLocaleString("default",{weekday:'long'})
 const year=d.getFullYear()
 const month=d.toLocaleString("default",{month:'long'})
+const time=d.toLocaleString("en-US",{hour:'2-digit', minute:'2-digit'})
 
 useEffect(()=>{
 const fetchWeather=async()=>{
@@ -37,28 +40,39 @@ const handleSubmit=(event)=>{
   setLocation(input)
 }
   return (
+    
   
     <div className="App">
       <div className=" pt-5">
         <div className='app-title'>  
-        <h1 className='text-white pb-4 text-center'>Get  the current weather</h1>     
+        {/* <h1 className='text-white pb-4 text-center'>Get  the current weather</h1>      */}
         </div>
       
    
   <div className='text-white cardBox'>
-  <form onSubmit={handleSubmit} className='form-search pb-4'>
-         
-         <div className='search-box'>
-<input type="search" value={input} onChange={(e)=>setInput(e.target.value)}  placeholder="Enter city name" className='searchInput'/>
-<button className="btn btn-info text-white"><BsSearch/></button>
-</div>
-       </form>
-<div className='heading'>
+    <div className='card_header'>
 
+  <form onSubmit={handleSubmit} className='form-search pb-4'>
+  
+         <div className='search-box'>
+<input type="text" value={input} onChange={(e)=>setInput(e.target.value)}  placeholder="Enter city name" className='searchInput'/>
+<i className='search-icon'><BsSearch/></i>
+
+</div>
+
+       </form>
+       <div className='units d-flex'>
+        <h4>Current Weather</h4>
+       {/* <div className='unit'>°C</div>
+       <div className='unit'>°F</div> */}
+       </div>
+       
+       </div>
+<div className='heading'>
 
 {(typeof data.main!= "undefined") ?   (   <h1 className='mb-4'>{data.name}</h1>) :(<div className='mb-3'>Search...</div>)}
  
-  <h4>{day}, {month} {date}, {year}</h4>
+  <h4>{day}, {month} {date}, {year}, at {time}</h4>
 
   </div>
 
@@ -72,7 +86,13 @@ const handleSubmit=(event)=>{
 <h2>{data.main.temp}°F</h2>
 </div>
 <div className='weather mt-4 mb-4'>
+
  <h4>{data.weather[0].main}</h4> 
+ <div className='behavior'>
+ {
+  data.weather[0].main==='Clouds' ? <FaCloud fontSize={42}/> :  data.weather[0].main==='Rain' ? <FaCloudRain/> : <div></div>
+ }
+ </div>
 </div>
 <div className='features d-flex justify-content-evenly'>
   <div className='feels card_box'>
