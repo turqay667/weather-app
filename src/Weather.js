@@ -17,8 +17,6 @@ import Error from "./Error";
 import Hourly from "./Hourly";
 import Daily from "./Daily";
 import Footer from "./Footer";
-
-
 const Weather=()=>{
 const [data,setData]=useState([])
 const [daily,setDaily]=useState([])
@@ -40,16 +38,16 @@ const time=d.toLocaleString("en-US",{hour:'2-digit', minute:'2-digit'})
 useEffect(()=>{
 const fetchWeather=async()=>{
 
-const response=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=ff2b0f18235b8cf43d40e92641f6aae1`)
+const response=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.API_KEY}`)
 const currentData=await response.json()
 const {lat, lon}=currentData.coord
    
-const dailyResponse=await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=ff2b0f18235b8cf43d40e92641f6aae1`)
+const dailyResponse=await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.API_KEY}`)
 const dailyData=await dailyResponse.json()
 const dailyForecast=dailyData.list.filter((item,index)=>index%8===0
 );
 
-const hourlyResponse=await fetch(`https://api.weatherapi.com/v1/forecast.json?key=56d79d7806684520ad2165750241011&q=${location}`)
+const hourlyResponse=await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${process.env.APII_KEY}&q=${location}`)
 const hourlyData=await hourlyResponse.json()
 
 setData(currentData)
