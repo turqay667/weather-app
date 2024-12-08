@@ -2,48 +2,73 @@
 *{
   margin:0 ;
   padding: 0;
+ 
   box-sizing: border-box;
 }
+a{
+  text-decoration: none;
+  color: inherit;
+}
+a:hover{
+  color: inherit;
+}
+input:focus{
+  border: none;
+  outline: none;
+  color: white;
+}
+button{
+  background: #409AC7 !important;
+}
+p{
+  font-size: 20px;
+}
+h2{
+  font-weight: bold;
+}
+h4{
+  color: lightblue;
+}
+h3{
+  font-weight: bold;
+}
 body{
-  background-image: url('/public/sunset.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-color: rgba(0, 0, 0, 0.4);
+  color: white !important;
+  background-color: #313d6f;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   z-index: -1;
 }
-.App{
-  width: 100%;
-  height:100vh;
-  position: relative;
-  color: white;
-
-}
-
 .search-box{
   position: relative;
-  text-align: left;
+  text-align: center;
   padding-top: 1rem;
+  width: 30rem;
 }
 .search-box input{
-  padding: .5rem 1rem;
+  padding: .9rem 1rem;
   letter-spacing: 1px;
-  text-align: center;
-  color: white;
+  text-align: left;
+  padding-left: 5rem;
   border-radius: 10px;
   border: none;
-  background: rgba(255,255,255,0.1);
+  width: 100%;
+  color: white;
+  background-color: #42497f;
+  font-weight: bold;
+
 }
 .search-icon{
   position: absolute;
-  left: 10px;
-  bottom: 10px;
+  left: 15px;
+  font-size:2rem;
 
 }
 ::placeholder{
-  color: white !important;
+  color: white;
 }
 
 .weather{
@@ -68,59 +93,175 @@ text-align: center;
 .bold{
   font-weight: 700;
 }
+.daily{
+  display: flex;
+}
+.daily .card_box{
+  width: 800px;
+}
+.daily .card_box{
+  flex-direction: column;
+  font-size: 24px;
+  background: none;
+  justify-content: space-around;
+  gap: 1px;
+  box-shadow: none;
+}
 .card_box{
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  padding: 3px;
-  background: rgba(0, 0, 0, 0.3) ;
+  justify-content: center;
+  gap: 3rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  height: 10rem;
   border-radius: 10px;
-  width: 175px;
+  max-width: 400px;
+  background: #42497f;
+  margin: 1rem;
+  color:white;
+
+}
+.hours{
+  flex-direction: column;
+  height: 100%;
+  font-size: 24px;
+  gap: 3px;
+}
+.hours img{
+  width: 10rem;
+  height: 10rem;
+}
+.icon{
+  font-size: 70px;
+}
+.temperature{
+font-weight: bold;
 }
 .card_box p{
   margin-bottom: inherit;
 }
 .cardBox{
-  padding: 1rem;
   border-radius: 12px;
-  background:rgba(0, 0, 0, 0.2) ;
-  margin: 1rem auto;
-  text-align: center;
-  max-width: 600px;
-  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
+
 }
 .card_header{
 display: flex;
-justify-content: space-between;
+justify-content: center;
 align-items: center;
 }
 .units h4{
   font-weight: bold;
   letter-spacing: 1px;
 }
-.behavior{
+.behavior a{
+  font-size: 7rem;
+}
+.current_box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.current_box h2{
   font-size: 40px;
 }
 
-.searchbar{
-  max-width: 20rem;
-  margin-bottom: 2rem;
-}
 .searchInput:focus{
 outline: none;
 }
-
-@media screen and (max-width:768px) {
-.App:before{
-  background-size: contain;
-  height: auto;
+.description{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  padding-bottom: 2rem;
 }
-  .features{
-  flex-direction:column ;
+.details{
+  gap: 2rem;
+}
+.features{
+  gap: 1rem;
+}
+section{
+  height: 10rem;
+  display: flex;
   align-items: center;
 }
-.features .card_box{
-  margin-top: 2rem;
+form{
+  display: flex;
 }
+input{
+  background-color:#42497f;
+  padding: clamp(12px, 0.83vw, 24px);
+  color: black;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+}
+.btn{
+  background: #409AC7;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+footer{
+  text-align: center;
+  color: white;
+}
+footer p{
+  border-top:1px solid #42497f;
+  padding: 2rem;
+  margin-bottom: inherit;
 
 }
+footer img{
+  width: 150px;
+  height: 100px;
+}
+
+.footer_logo{
+font-size:2rem;
+font-weight: 500;
+display: block;
+margin-bottom: 1.5rem;
+}
+
+.footer_social{
+  display: flex;
+  justify-content: center;
+  gap:1rem;
+  margin-bottom: 2rem;
+}
+.footer_social a{
+  border: 2px solid rgba(255, 255, 255, .3) !important;
+  padding: 0.8rem;
+  border-radius: 0.7rem;
+  display: flex;
+  border: 1px solid transparent;
+}
+.footer_social a:hover{
+  background: red;
+}
+.topbutton{
+  background-color: #2c2c6c;
+  cursor: pointer;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 12px;
+  border-radius: 50%;
+}
+.errors{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 80vh;
+}
+.icon{
+  font-size: 5rem;
+}
+/* .daily{
+  background: #303B75;
+} */
