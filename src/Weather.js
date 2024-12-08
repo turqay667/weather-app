@@ -38,16 +38,16 @@ const time=d.toLocaleString("en-US",{hour:'2-digit', minute:'2-digit'})
 useEffect(()=>{
 const fetchWeather=async()=>{
 
-const response=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.API_KEY}`)
+const response=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.REACT_APP_API_KEY}`)
 const currentData=await response.json()
 const {lat, lon}=currentData.coord
    
-const dailyResponse=await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.API_KEY}`)
+const dailyResponse=await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_API_KEY}`)
 const dailyData=await dailyResponse.json()
 const dailyForecast=dailyData.list.filter((item,index)=>index%8===0
 );
 
-const hourlyResponse=await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${process.env.APII_KEY}&q=${location}`)
+const hourlyResponse=await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_APII_KEY}&q=${location}`)
 const hourlyData=await hourlyResponse.json()
 
 setData(currentData)
