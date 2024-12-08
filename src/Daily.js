@@ -17,7 +17,7 @@ function Daily({daily}){
         </div>
        
             );
-        }) : <div>dd</div>}
+        }) : <div className="text-center">No daily data available</div>}
     </div>
     )
 

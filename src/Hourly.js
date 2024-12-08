@@ -28,7 +28,7 @@ const Hourly=({hourly})=>{
                    </Swiper>
           
         ) : (
-   <>No hourly data available</>
+   <div className="text-center">No hourly data available</div>
         
         )}
         </div>

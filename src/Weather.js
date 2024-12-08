@@ -49,7 +49,7 @@ const dailyData=await dailyResponse.json()
 const dailyForecast=dailyData.list.filter((item,index)=>index%8===0
 );
 
-const hourlyResponse=await fetch(`http://api.weatherapi.com/v1/forecast.json?key=56d79d7806684520ad2165750241011&q=${location}`)
+const hourlyResponse=await fetch(`https://api.weatherapi.com/v1/forecast.json?key=56d79d7806684520ad2165750241011&q=${location}`)
 const hourlyData=await hourlyResponse.json()
 
 setData(currentData)
