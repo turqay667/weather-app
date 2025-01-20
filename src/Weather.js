@@ -11,7 +11,7 @@ import { IoIosSunny } from "react-icons/io";
 import { FaLinkedinIn } from 'react-icons/fa';
 import { MdMyLocation } from "react-icons/md";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faWind,faSun, faDroplet, faTemperatureHalf} from "@fortawesome/free-solid-svg-icons";
+import {faWind,faSun, faDroplet, faTemperatureHalf, faCloud} from "@fortawesome/free-solid-svg-icons";
 import NewsLetter from "./Newsletter";
 import Error from "./Error";
 import Hourly from "./Hourly";
@@ -51,11 +51,9 @@ const hourlyResponse=await fetch(`https://api.weatherapi.com/v1/forecast.json?ke
 const hourlyData=await hourlyResponse.json()
 
 setData(currentData)
+console.log(data)
 setDaily(dailyForecast)
 setHourly(hourlyData.forecast.forecastday[0].hour)
-  console.log(data)
-  console.log(dailyData)
-  console.log(hourlyData.forecast.forecastday)
 }
 
   fetchWeather()
@@ -133,10 +131,10 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 </div>
 </div>
 <div className='humidity card_box col-md-6'>
-<FontAwesomeIcon icon={faSun} fontSize="3rem"/>
+<FontAwesomeIcon icon={data.weather[0].main.toLowerCase().includes('clear') ? faSun : faCloud} fontSize="3rem"/>
 <div>
-<p>UV Index</p>
-<p className='bold'>{data.main.humidity}%</p>
+<p>Cloud cover</p>
+<p className='bold'>{data.weather[0].main}</p>
 </div>
 </div>
 </div>

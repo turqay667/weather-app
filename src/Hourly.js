@@ -15,14 +15,14 @@ const Hourly=({hourly})=>{
            pagination={true}
             >
              {hourly.map((data, index)=>{
-              const times=new Date().getHours()
-            const  time=parseInt(data.time.replace(/[1-9][0-9][0-9]{2}-([0][1-9]|[1][0-2])-([1-2][0-9]|[0][1-9]|[3][0-1])/gm, ''))
-             if(time>=times){
-    
+              const current=new Date()
+              const time=new Date(data.time)
+             if(time>=current){
+                    const hour=time.getHours()
                   return (
                     <>
                       <SwiperSlide  className="hours card_box" key={index}>
-        <div className="day">{time}:00</div>   
+        <div className="day">{hour}:00</div>   
         <a className="icon">{data.condition.text.includes('rain') ? <FaCloudRain/> : data.condition.text.includes('cloudy')  ? ( <FaCloud/> ) : <IoIosSunny/>}</a>
 <div className="temperature">{(data.temp_c).toFixed(0)}°C</div>
                       </SwiperSlide>      
