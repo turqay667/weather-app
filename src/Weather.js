@@ -86,7 +86,7 @@ return (
  <form onSubmit={handleSubmit} className='form-search'>
     <div className='search-box'>
 <input type="text" value={input} onChange={(e)=>setInput(e.target.value)}  placeholder="Enter city name" className='searchInput'/>
-<i className='search-icon'><MdMyLocation/></i>
+{/* <i className='search-icon'><MdMyLocation/></i> */}
 </div>
 
   </form>
@@ -161,18 +161,16 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 ) : (<Error/>)
 }
 <div className="row mt-5">
-<h2 className="text-center pt-5 pb-5 "> Today's Forecast</h2>
+<h2 className="text-center pt-4 pb-4 "> Today's Forecast</h2>
 <Hourly hourly={hourly}/>
   </div>
 <div className="row mt-5">
 <h2 className="text-center">5-Day Forecast</h2>
 <Daily daily={daily}/>
   </div>
-{
 
-}
 </div>
-<NewsLetter/>
+{/* <NewsLetter/> */}
 <Footer/>
 </div>
 

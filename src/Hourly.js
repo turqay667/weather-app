@@ -10,8 +10,8 @@ const Hourly=({hourly})=>{
         { hourly && hourly.length>0 ? (
              
             
-            <Swiper slidesPerView={4}
-            spaceBetween={10}
+            <Swiper slidesPerView={2}
+            spaceBetween={5}
            pagination={true}
             >
              {hourly.map((data, index)=>{
