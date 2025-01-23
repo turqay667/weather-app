@@ -5,6 +5,9 @@
  
   box-sizing: border-box;
 }
+:root{
+  --background:#262936
+}
 a{
   text-decoration: none;
   color: inherit;
@@ -26,9 +29,7 @@ p{
 h2{
   font-weight: bold;
 }
-h4{
-  color: lightblue;
-}
+
 h3{
   font-weight: bold;
 }
@@ -37,7 +38,7 @@ body{
   background-repeat: no-repeat;
   background-attachment: fixed;
   color: white !important;
-  background-color: #313d6f;
+  background-color: #1E202B;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 18px;
   z-index: -1;
@@ -45,25 +46,25 @@ body{
 .search-box{
   position: relative;
   text-align: center;
-  padding-top: 1rem;
 }
 .search-box input{
   padding: .9rem 1rem;
   letter-spacing: 1px;
   text-align: left;
-  padding-left: 5rem;
-  border-radius: 10px;
+  padding-left: 3.5rem;
+  border-radius: 25px;
   border: none;
   width: 100%;
   color: white;
-  background-color: #42497f;
+  /* background-color: #42497f; */
   font-weight: bold;
 
 }
 .search-icon{
   position: absolute;
   left: 15px;
-  font-size:2rem;
+  top:7px;
+  font-size:1.5rem;
 
 }
 ::placeholder{
@@ -78,62 +79,92 @@ body{
   font-weight: 700;
 }
 .details{
- 
-text-align: center;
+background: var(--background);
+border-radius: 10px;
+}
+.details-title{
+  padding-bottom: 1rem;
+}
+.details .features{
+  background: none;
 }
 .humidity{
   border-radius: 10px;
 }
-.details p{
-  font-size: 24px;
-
+.details-title{
+  color: grey;
 }
-
 .bold{
   font-weight: 700;
 }
 .daily{
   display: flex;
+  flex-direction: column;
 }
 .daily .card_box{
   width: 800px;
 }
 .daily .card_box{
-  flex-direction: column;
+
   font-size: 24px;
   gap: 1px;
   box-shadow: none;
 }
+.card-box{
+  /* background: #2c2c6c; */
+  border-radius: 10px;
+}
+.card_bottom{
+  border-top: 1px solid grey;
+  padding-top: 1rem;
+}
 .features{
   display: flex;
-  justify-content: center;
+  box-shadow: none !important;
+  justify-content: inherit !important;
 }
+
 .card_box{
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  border-radius: 10px;
+  /* max-width: 300px; */
+  background: var(--background);
+  color:white;
+
+}
+.card-box{
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   border-radius: 10px;
   max-width: 300px;
-  background: #42497f;
+  background: var(--background);
+  color:white;
+}
+.features .card_box{
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  box-shadow: none;
+  padding: 1rem;
+  border-radius: 10px;
+  max-width: 300px;
   margin: 1rem;
   color:white;
-
 }
 .hours{
+  align-items: center;
   flex-direction: column;
   height: 100%;
   font-size: 24px;
+  max-width: 200px;
   gap: 3px;
 }
 .hours img{
   width: 10rem;
   height: 10rem;
-}
-.icon{
-  font-size: 70px;
 }
 .temperature{
 font-weight: bold;
@@ -147,7 +178,7 @@ font-weight: bold;
 }
 .card_header{
 display: flex;
-justify-content: center;
+justify-content: space-between;
 align-items: center;
 }
 .units h4{
@@ -160,8 +191,7 @@ align-items: center;
 .current_box{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  text-transform: capitalize;
 }
 .current_box h2{
   font-size: 40px;
@@ -175,13 +205,18 @@ outline: none;
   align-items: center;
   justify-content: center;
   gap: 3rem;
-  padding-bottom: 2rem;
 }
 .details{
   gap: 2rem;
+  padding: 20px;
 }
-.features{
-  gap: 1rem;
+.day{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.current{
+  margin-left: inherit;
 }
 section{
   height: 10rem;
@@ -192,11 +227,11 @@ form{
   display: flex;
 }
 input{
-  background-color:#42497f;
+  background: var(--background);
   padding: clamp(12px, 0.83vw, 24px);
   color: black;
   border: none;
-  border-radius: 8px;
+  border-radius: 25px;
   width: 100%;
 }
 .btn{
@@ -210,7 +245,7 @@ footer{
   color: white;
 }
 footer p{
-  border-top:1px solid #42497f;
+  border-top:1px solid var(--background);
   padding: 2rem;
   margin-bottom: inherit;
 
@@ -260,8 +295,20 @@ margin-bottom: 1.5rem;
   height: 80vh;
 }
 .icon{
-  font-size: 5rem;
+  font-size: 3rem;
 }
 /* .daily{
   background: #303B75;
 } */
+ .detail{
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+ }
+ .swiper-wrapper{
+  gap: 1rem;
+  justify-content: center;
+ }
+ .swiper-slide{
+  width: 180px !important;
+ }

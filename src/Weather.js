@@ -1,39 +1,29 @@
 import {BsSearch} from "react-icons/bs"
 import { useEffect, useState } from 'react';
-
-import { BsDroplet } from "react-icons/bs";
-import { FaTemperatureLow } from "react-icons/fa";
+import { FaMoon, FaTemperatureLow } from "react-icons/fa";
 import { FaCloud } from "react-icons/fa";
 import { FaCloudRain } from "react-icons/fa";
-import { BsInstagram } from 'react-icons/bs';
-import {ImFacebook} from "react-icons/im"
 import { IoIosSunny } from "react-icons/io";
-import { FaLinkedinIn } from 'react-icons/fa';
-import { MdMyLocation } from "react-icons/md";
+import { TiWaves } from "react-icons/ti";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faWind,faSun, faDroplet, faTemperatureHalf, faCloud} from "@fortawesome/free-solid-svg-icons";
-import NewsLetter from "./Newsletter";
 import Error from "./Error";
 import Hourly from "./Hourly";
 import Daily from "./Daily";
 import Footer from "./Footer";
-const Weather=()=>{
+import { MdOutlineVisibility } from "react-icons/md";
+const Weather=({lat,lon})=>{
 const [data,setData]=useState([])
 const [daily,setDaily]=useState([])
 const [hourly, setHourly]=useState([])
 const [location,setLocation]=useState('Baku')
 const [input,setInput]=useState('')
 
-let componentMounted=true
-
-
 
 const d=new Date()
 const date=d.getDate()
 const day=d.toLocaleString("default",{weekday:'long'})
-const year=d.getFullYear()
 const month=d.toLocaleString("default",{month:'long'})
-const time=d.toLocaleString("en-US",{hour:'2-digit', minute:'2-digit'})
 
 useEffect(()=>{
 const fetchWeather=async()=>{
@@ -42,117 +32,133 @@ const response=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${
 const currentData=await response.json()
 const {lat, lon}=currentData.coord
    
-const dailyResponse=await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_API_KEY}`)
+const dailyResponse=await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_API_KEY}&units=metric`)
 const dailyData=await dailyResponse.json()
 const dailyForecast=dailyData.list.filter((item,index)=>index%8===0
 );
-
-const hourlyResponse=await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_APII_KEY}&q=${location}`)
-const hourlyData=await hourlyResponse.json()
-
+const currentTime=new Date()
+const hourlyData=dailyData.list.filter((item)=>{
+const hour=new Date(item['dt_txt'])
+const hours=new Date(currentTime.getTime()+24*60*60*1000)
+return hour>currentTime && hour <=hours
+})
 setData(currentData)
-console.log(data)
 setDaily(dailyForecast)
-setHourly(hourlyData.forecast.forecastday[0].hour)
+setHourly(hourlyData)
 }
 
   fetchWeather()
-},[location])
+},[location,lat,lon])
 
 const handleSubmit=(event)=>{
 event.preventDefault()
 setLocation(input)
 }
-const success=(position)=>{
-console.log(position)
-}
-const error=(err)=>{
-  console.log(err)
-}
-// const apiKey=AIzaSyDO85rBCHFPd120HMS6cxENbDjzuXbJsEw
-// const url=`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`
-// const userLocation=navigator.geolocation.getCurrentPosition(position);
-// const {latitude, longitude}=position.coords;
-// const currentLocation =fetch(url).then(response=>response.json)
-// console.log(userLocation)
-// console.log(data)
-// console.log(daily)
+
+
+
 return (
     <div>
-    <div className="pt-3 container-fluid">
+    <div className="pt-4 mt-3 container">
 <div className='row'>
-<div className='card_header text-center'>
- <div className='col-md-5'>
+  <div className="col-md-8">
+  <h2>Weather Forecast</h2>
+  </div>
+<div className="col-md-4">
  <form onSubmit={handleSubmit} className='form-search'>
     <div className='search-box'>
 <input type="text" value={input} onChange={(e)=>setInput(e.target.value)}  placeholder="Enter city name" className='searchInput'/>
-{/* <i className='search-icon'><MdMyLocation/></i> */}
+<i className='search-icon'><BsSearch/></i>
 </div>
 
   </form>
- </div>
- <div className='col-md-7'>
-  </div>
-  </div>
-    </div>
 
+    </div>
+    </div>
 
 { data.main ? (
 <>
-<div className="row align-items-center">
-<div className='col-md-3'>
-  <div className="current_box">
+<div className="container">
+<div className="row gap-1 mt-4">
+<div className='col-md-4 current'>
+  <div className=" current_box card_box">
+    <h4>Now</h4>
 <div className="description">
+<div className='temp'>
+<h2>{(data.main.temp-273.15).toFixed()}°C</h2>
+</div>
 <div className='behavior'>
 {
 data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='Rain' ? <a><FaCloudRain/> </a>: <div><a><IoIosSunny/> </a></div>
 }
 </div>
-<div className='temp'>
-<h2>{(data.main.temp-273.15).toFixed()}°C</h2>
-</div>
 </div>
 <div>
+<h4>{data.weather[0].description}</h4>
+<div className="card_bottom">
 <h4 className='mb-4'>{data.name}</h4>
 <h4>{day}, {month} {date}</h4>
 </div>
-</div>
-</div>
-<div className="col-md-2">
 
 </div>
-<div className='details mt-4 col-md-7'>
-<div className='row features'>
-<div className='feels card_box  cardBox  col-md-6'>
+</div>
+</div>
+<div className='details col-md-8 cardbox'>
+<h4>Todays Highlights</h4>
+<div className='row features card_box'>
+<div className='row sun'>
+<p className="details-title">Sunrise & Sunset</p>
+<div className="detail col-md-4">
+<FontAwesomeIcon icon={faSun } fontSize="3rem"/>
+<div>
+<p className="text-muted">Sunrise</p>
+<p className='bold'>{new Date(data.sys.sunrise*1000).toLocaleTimeString('en-US',{
+  hour:"2-digit",
+  minute:'2-digit'
+})}</p>
+</div>
+</div>
+<div className="detail col-md-4">
+<FaMoon fontSize="3rem"/>
+<div>
+<p className="text-muted">Sunset</p>
+<p className='bold'>{new Date(data.sys.sunset*1000).toLocaleTimeString('en-US',{
+  hour:"2-digit",
+  minute:'2-digit'
+})}</p>
+</div>
+</div>
+</div>
+</div>
+<div className="row features card_box pt-5">
+<div className='feels col-md-4'>
+<div className="detail">
 <FontAwesomeIcon icon={faTemperatureHalf} fontSize="3rem" />
 <div>
-<p>Feel like </p>
+<p className="text-muted">Feel like </p>
 <p className='bold'> {(data.main.feels_like-273.15).toFixed(0)}°C</p>
 </div>
 </div>
-<div className='humidity card_box col-md-6'>
-<FontAwesomeIcon icon={data.weather[0].main.toLowerCase().includes('clear') ? faSun : faCloud} fontSize="3rem"/>
-<div>
-<p>Cloud cover</p>
-<p className='bold'>{data.weather[0].main}</p>
 </div>
-</div>
-</div>
-<div className='row features'>
-<div className='wind card_box col-md-6'>
-
-<FontAwesomeIcon icon={faWind} fontSize="3rem"/>
-<div><p >Wind Speed</p>
-<p className='bold'> {data.wind.speed} MPH</p></div>
-
-</div>
-<div className='humidity card_box col-md-6'>
-
+<div className="humidity col-md-4">
+<div className="detail">
 <FontAwesomeIcon icon={faDroplet} fontSize="3rem"/>
 <div>
-<p>Humidity</p>
+<p className="text-muted">Humidity </p>
 <p className='bold'>{data.main.humidity}%</p>
 </div>
+</div>
+</div>
+
+ <div className="visibility col-md-4">
+<div className="detail">
+<MdOutlineVisibility fontSize="3rem"/>
+<div>
+<p className="text-muted">Visibility</p>
+<p className='bold'>{data.visibility/1000}km</p>
+</div>
+</div> 
+</div>  
 </div>
 </div>
 </div>
@@ -160,15 +166,13 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 </>
 ) : (<Error/>)
 }
-<div className="row mt-5">
-<h2 className="text-center pt-4 pb-4 "> Today's Forecast</h2>
-<Hourly hourly={hourly}/>
-  </div>
-<div className="row mt-5">
-<h2 className="text-center">5-Day Forecast</h2>
-<Daily daily={daily}/>
-  </div>
+<div className="container">
 
+<div className="row mt-5">
+<Daily daily={daily}/>
+<Hourly hourly={hourly}/> 
+</div>
+</div>
 </div>
 {/* <NewsLetter/> */}
 <Footer/>
@@ -177,4 +181,17 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 )
    
 }
+{/* <div className="col-md-4">
+<div className='wind'>
+<p className="details-title">Wind</p>
+<div className="detail">
+<FontAwesomeIcon icon={faWind} fontSize="3rem"/>
+<div>
+<p className="text-muted">Wind Speed</p>
+<p className='bold'> {data.wind.speed} MPH</p>
+</div>
+</div>
+</div>
+</div> */}
+
 export default Weather;
