@@ -102,7 +102,7 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 </div>
 </div>
 <div>
-<h4>{data.weather[0].description}</h4>
+<p className="pb-2">{data.weather[0].description}</p>
 <div className="card_bottom">
 <h5 className='mb-4'>{data.name}</h5>
 <h5>{day}, {month} {date}</h5>
@@ -117,7 +117,7 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 <div className='row sun'>
 <p className="details-title">Sunrise & Sunset</p>
 <div className="detail col-md-4">
-<FontAwesomeIcon icon={faSun } fontSize="3rem"/>
+<FontAwesomeIcon icon={faSun } />
 <div>
 <p className="text-muted">Sunrise</p>
 <p className='bold'>{new Date(data.sys.sunrise*1000).toLocaleTimeString('en-US',{
@@ -127,7 +127,7 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 </div>
 </div>
 <div className="detail col-md-4">
-<FaMoon fontSize="3rem"/>
+<FaMoon />
 <div>
 <p className="text-muted">Sunset</p>
 <p className='bold'>{new Date(data.sys.sunset*1000).toLocaleTimeString('en-US',{
@@ -138,10 +138,10 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 </div>
 </div>
 </div>
-<div className="row features card_box pt-5">
+<div className="row features card_box pt-3">
 <div className='feels col-md-4'>
 <div className="detail">
-<FontAwesomeIcon icon={faTemperatureHalf} fontSize="3rem" />
+<FontAwesomeIcon icon={faTemperatureHalf}  />
 <div>
 <p className="text-muted">Feel like </p>
 <p className='bold'> {(data.main.feels_like-273.15).toFixed(0)}°C</p>
@@ -150,7 +150,7 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 </div>
 <div className="humidity col-md-4">
 <div className="detail">
-<FontAwesomeIcon icon={faDroplet} fontSize="3rem"/>
+<FontAwesomeIcon icon={faDroplet} />
 <div>
 <p className="text-muted">Humidity </p>
 <p className='bold'>{data.main.humidity}%</p>
@@ -160,7 +160,7 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 
  <div className="visibility col-md-4">
 <div className="detail">
-<MdOutlineVisibility fontSize="3rem"/>
+<MdOutlineVisibility/>
 <div>
 <p className="text-muted">Visibility</p>
 <p className='bold'>{data.visibility/1000}km</p>

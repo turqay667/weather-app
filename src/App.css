@@ -186,7 +186,7 @@ align-items: center;
   letter-spacing: 1px;
 }
 .behavior a{
-  font-size: 7rem;
+  font-size: 5rem;
 }
 .current_box{
   display: flex;
@@ -225,6 +225,7 @@ section{
 }
 form{
   display: flex;
+  justify-content: center;
 }
 input{
   background: var(--background);
@@ -311,4 +312,13 @@ margin-bottom: 1.5rem;
  }
  .swiper-slide{
   width: 180px !important;
+ }
+ .detail svg{
+font-size: 2.5rem;
+width: 2.5rem;
+ }
+ @media (max-width:720px){
+  .current{
+    margin-left: auto;
+  }
  }
