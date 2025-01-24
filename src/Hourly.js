@@ -6,20 +6,19 @@ const Hourly=({hourly})=>{
  
     return (
       <>
-{/* <h2 className="pt-4 pb-4 text-center"> Today at</h2>  */}
-  <div className="col-md-8">
+<h2 className="pt-4 pb-4 text-center"> Today at</h2>  
+  <div>
   
         { hourly && hourly.length>0 ? (
              
             
-            <Swiper slidesPerView={3}
+            <Swiper 
+            slidesPerView={6}
            pagination={true}
-           grid={{
-            rows:2
-           }}
+        
+      
             >
              {hourly.map((data, index)=>{
-              console.log(data)
               const current=new Date()
               const time=new Date(data.dt_txt)
              if(time>=current){

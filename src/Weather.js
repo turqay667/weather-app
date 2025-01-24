@@ -6,12 +6,16 @@ import { FaCloudRain } from "react-icons/fa";
 import { IoIosSunny } from "react-icons/io";
 import { TiWaves } from "react-icons/ti";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvent } from "react-leaflet";
+import 'leaflet/dist/leaflet.css';
 import {faWind,faSun, faDroplet, faTemperatureHalf, faCloud} from "@fortawesome/free-solid-svg-icons";
 import Error from "./Error";
 import Hourly from "./Hourly";
 import Daily from "./Daily";
 import Footer from "./Footer";
-import { MdOutlineVisibility } from "react-icons/md";
+import { MdContactless, MdOutlineVisibility } from "react-icons/md";
+
+import Map from "./Map";
 const Weather=({lat,lon})=>{
 const [data,setData]=useState([])
 const [daily,setDaily]=useState([])
@@ -19,19 +23,17 @@ const [hourly, setHourly]=useState([])
 const [location,setLocation]=useState('Baku')
 const [input,setInput]=useState('')
 
-
 const d=new Date()
 const date=d.getDate()
 const day=d.toLocaleString("default",{weekday:'long'})
 const month=d.toLocaleString("default",{month:'long'})
 
 useEffect(()=>{
-const fetchWeather=async()=>{
 
+const fetchWeather=async()=>{
 const response=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.REACT_APP_API_KEY}`)
 const currentData=await response.json()
 const {lat, lon}=currentData.coord
-   
 const dailyResponse=await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_API_KEY}&units=metric`)
 const dailyData=await dailyResponse.json()
 const dailyForecast=dailyData.list.filter((item,index)=>index%8===0
@@ -42,6 +44,7 @@ const hour=new Date(item['dt_txt'])
 const hours=new Date(currentTime.getTime()+24*60*60*1000)
 return hour>currentTime && hour <=hours
 })
+
 setData(currentData)
 setDaily(dailyForecast)
 setHourly(hourlyData)
@@ -55,14 +58,19 @@ event.preventDefault()
 setLocation(input)
 }
 
-
-
+let position=[49.892, 40.3777]
+if(!data){
+ position = [data.coord.lat, data.coord.lon]
+}
+else{
+  position=[49.892, 40.3777]
+}
 return (
     <div>
     <div className="pt-4 mt-3 container">
 <div className='row'>
   <div className="col-md-8">
-  <h2>Weather Forecast</h2>
+  {/* <h2>Weather Forecast</h2> */}
   </div>
 <div className="col-md-4">
  <form onSubmit={handleSubmit} className='form-search'>
@@ -96,8 +104,8 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 <div>
 <h4>{data.weather[0].description}</h4>
 <div className="card_bottom">
-<h4 className='mb-4'>{data.name}</h4>
-<h4>{day}, {month} {date}</h4>
+<h5 className='mb-4'>{data.name}</h5>
+<h5>{day}, {month} {date}</h5>
 </div>
 
 </div>
@@ -166,11 +174,21 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 </>
 ) : (<Error/>)
 }
-<div className="container">
+<div className="container mt-5">
 
-<div className="row mt-5">
-<Daily daily={daily}/>
+
 <Hourly hourly={hourly}/> 
+<div className="mt-5 row">
+<Daily daily={daily}/>
+<div className="col-md-8">
+<MapContainer className="rounded-3"  center={position} zoom={13} scrollWheelZoom={false} style={{height:'400px'}}  >
+<TileLayer attribution=''
+url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
+<Map data={data}/>
+</MapContainer>
+
+</div>
+
 </div>
 </div>
 </div>

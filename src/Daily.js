@@ -5,7 +5,7 @@ function Daily({daily}){
 
     return (
       <>
-      <h2 className="mb-5">5-Day Forecast </h2>
+      <h2 className="mb-5 pt-5">5-Day Forecast </h2>
         <div className="daily mb-5 card_box col-md-4">
        { daily && daily.length>0 ? daily.map((data, index)=>{
          const date=new Date(data.dt*1000).toLocaleDateString("en-US", {weekday:"long"})
