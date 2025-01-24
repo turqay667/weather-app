@@ -8,7 +8,7 @@ import { TiWaves } from "react-icons/ti";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvent } from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
-import {faWind,faSun, faDroplet, faTemperatureHalf, faCloud} from "@fortawesome/free-solid-svg-icons";
+import {faWind,faSun, faDroplet, faTemperatureHalf, faCloud, faMoon} from "@fortawesome/free-solid-svg-icons";
 import Error from "./Error";
 import Hourly from "./Hourly";
 import Daily from "./Daily";
@@ -119,7 +119,7 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 <div className="detail col-md-4">
 <FontAwesomeIcon icon={faSun } />
 <div>
-<p className="text-muted">Sunrise</p>
+<p >Sunrise</p>
 <p className='bold'>{new Date(data.sys.sunrise*1000).toLocaleTimeString('en-US',{
   hour:"2-digit",
   minute:'2-digit'
@@ -127,9 +127,9 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 </div>
 </div>
 <div className="detail col-md-4">
-<FaMoon />
+<FontAwesomeIcon icon={faMoon} />
 <div>
-<p className="text-muted">Sunset</p>
+<p >Sunset</p>
 <p className='bold'>{new Date(data.sys.sunset*1000).toLocaleTimeString('en-US',{
   hour:"2-digit",
   minute:'2-digit'
@@ -143,7 +143,7 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 <div className="detail">
 <FontAwesomeIcon icon={faTemperatureHalf}  />
 <div>
-<p className="text-muted">Feel like </p>
+<p >Feel like </p>
 <p className='bold'> {(data.main.feels_like-273.15).toFixed(0)}°C</p>
 </div>
 </div>
@@ -152,7 +152,7 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 <div className="detail">
 <FontAwesomeIcon icon={faDroplet} />
 <div>
-<p className="text-muted">Humidity </p>
+<p>Humidity </p>
 <p className='bold'>{data.main.humidity}%</p>
 </div>
 </div>
@@ -162,7 +162,7 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 <div className="detail">
 <MdOutlineVisibility/>
 <div>
-<p className="text-muted">Visibility</p>
+<p >Visibility</p>
 <p className='bold'>{data.visibility/1000}km</p>
 </div>
 </div> 
