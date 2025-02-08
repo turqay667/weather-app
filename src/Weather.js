@@ -54,6 +54,7 @@ setHourly(hourlyData)
   fetchWeather()
 },[location,lat,lon])
 
+console.log(data)
 const handleSubmit=(event)=>{
 event.preventDefault()
 setLocation(input)
@@ -77,7 +78,7 @@ return (
   <div className="col-md-8">
   <div className="degrees d-flex gap-2">
 <a className="btn btn-primary" onClick={()=>setDegree('C')}>C</a>
-<a className="btn btn-secondary" onClick={()=>setDegree('K')}>K</a>
+<a className="btn btn-success" onClick={()=>setDegree('K')}>K</a>
 </div>
   </div>
 <div className="col-md-4">

@@ -215,9 +215,9 @@ outline: none;
   align-items: center;
   justify-content: space-around;
 }
-.date{
+/* .date{
   width: 4rem;
-}
+} */
 .current{
   margin-left: inherit;
 }
