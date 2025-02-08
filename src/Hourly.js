@@ -2,7 +2,7 @@ import { FaCloud, FaCloudRain, FaRainbow } from "react-icons/fa"
 import { IoIosSunny } from "react-icons/io";
 import  {Swiper,SwiperSlide}  from "swiper/react";
 
-const Hourly=({hourly})=>{
+const Hourly=({hourly, degree, temp})=>{
  
     return (
       <>
@@ -28,7 +28,7 @@ const Hourly=({hourly})=>{
                       <SwiperSlide  className="hours card_box" key={index}>
         <div className="day">{hour}:00</div>   
         <a className="icon">{data.weather[0].description.includes('rain') ? <FaCloudRain/> : data.weather[0].description.includes('clouds')  ? ( <FaCloud/> ) : <IoIosSunny/>}</a>
-<div className="temperature">{(data.main.temp).toFixed(0)}°C</div>
+<div className="temperature">{(data.main.temp+temp).toFixed(0)}°{degree}</div>
                       </SwiperSlide>      
               </>
                    );

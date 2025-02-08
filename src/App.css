@@ -215,6 +215,9 @@ outline: none;
   align-items: center;
   justify-content: space-around;
 }
+.date{
+  width: 4rem;
+}
 .current{
   margin-left: inherit;
 }
@@ -236,7 +239,6 @@ input{
   width: 100%;
 }
 .btn{
-  background: #409AC7;
   color: white;
   font-size: 18px;
   font-weight: bold;

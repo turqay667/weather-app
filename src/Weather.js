@@ -20,6 +20,7 @@ const Weather=({lat,lon})=>{
 const [data,setData]=useState([])
 const [daily,setDaily]=useState([])
 const [hourly, setHourly]=useState([])
+const [degree,setDegree]=useState('C')
 const [location,setLocation]=useState('Baku')
 const [input,setInput]=useState('')
 
@@ -58,6 +59,10 @@ event.preventDefault()
 setLocation(input)
 }
 
+let temp=0;
+  if(degree==='K'){
+       temp+=273.15
+  }
 let position=[49.892, 40.3777]
 if(!data){
  position = [data.coord.lat, data.coord.lon]
@@ -70,7 +75,10 @@ return (
     <div className="pt-4 mt-3 container">
 <div className='row'>
   <div className="col-md-8">
-  {/* <h2>Weather Forecast</h2> */}
+  <div className="degrees d-flex gap-2">
+<a className="btn btn-primary" onClick={()=>setDegree('C')}>C</a>
+<a className="btn btn-secondary" onClick={()=>setDegree('K')}>K</a>
+</div>
   </div>
 <div className="col-md-4">
  <form onSubmit={handleSubmit} className='form-search'>
@@ -93,7 +101,11 @@ return (
     <h4>Now</h4>
 <div className="description">
 <div className='temp'>
-<h2>{(data.main.temp-273.15).toFixed()}°C</h2>
+<h2>
+  
+  {(data.main.temp-273.15+temp).toFixed()}°{degree}
+  
+  </h2>
 </div>
 <div className='behavior'>
 {
@@ -115,7 +127,7 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 <h4>Todays Highlights</h4>
 <div className='row features card_box'>
 <div className='row sun'>
-<p className="details-title">Sunrise & Sunset</p>
+<p className="details-title text-info">Sunrise & Sunset</p>
 <div className="detail col-md-4">
 <FontAwesomeIcon icon={faSun } />
 <div>
@@ -144,7 +156,7 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 <FontAwesomeIcon icon={faTemperatureHalf}  />
 <div>
 <p >Feel like </p>
-<p className='bold'> {(data.main.feels_like-273.15).toFixed(0)}°C</p>
+<p className='bold'> {(data.main.feels_like-273.15+temp).toFixed(0)}°{degree}</p>
 </div>
 </div>
 </div>
@@ -177,9 +189,9 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 <div className="container mt-5">
 
 
-<Hourly hourly={hourly}/> 
+<Hourly hourly={hourly} degree={degree} temp={temp}/> 
 <div className="mt-5 row">
-<Daily daily={daily}/>
+<Daily daily={daily} degree={degree} temp={temp}/>
 <div className="col-md-8">
 <MapContainer className="rounded-3"  center={position} zoom={13} scrollWheelZoom={false} style={{height:'400px'}}  >
 <TileLayer attribution=''
