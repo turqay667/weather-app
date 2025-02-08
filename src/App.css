@@ -327,5 +327,8 @@ width: 2.5rem;
 justify-content: center;
 padding-bottom: 1rem;
   }
+  .hours{
+    max-width: inherit !important;
+  }
 }
  
