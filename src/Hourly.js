@@ -1,24 +1,31 @@
 import { FaCloud, FaCloudRain, FaRainbow } from "react-icons/fa"
 import { IoIosSunny } from "react-icons/io";
-import  {Swiper,SwiperSlide}  from "swiper/react";
-
+import  {Swiper,SwiperSlide,}  from "swiper/react";
+import {Autoplay} from "swiper/modules"
 const Hourly=({hourly, degree, temp})=>{
  
     return (
       <>
 <h2 className="pt-4 pb-4 text-center"> Today at</h2>  
-  <div>
+  <div className="row">
   
         { hourly && hourly.length>0 ? (
              
             
             <Swiper 
-            slidesPerView={6}
+            slidesPerView={7}
            pagination={true}
+           loop={true}
+           autoplay={{ delay:1000, disableOnInteraction:false }}
+            modules={[ Autoplay ]}
+            initialSlide={0}
         
       
             >
              {hourly.map((data, index)=>{
+              // for (let i=0; i<8;i++){
+
+              // }
               const current=new Date()
               const time=new Date(data.dt_txt)
              if(time>=current){

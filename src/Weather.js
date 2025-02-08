@@ -194,7 +194,7 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 <div className="mt-5 row">
 <Daily daily={daily} degree={degree} temp={temp}/>
 <div className="col-md-8">
-<MapContainer className="rounded-3"  center={position} zoom={13} scrollWheelZoom={false} style={{height:'400px'}}  >
+<MapContainer className="rounded-3"  center={position} zoom={13} scrollWheelZoom={false} style={{height:'390px'}}  >
 <TileLayer attribution=''
 url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
 <Map data={data}/>

@@ -313,7 +313,7 @@ margin-bottom: 1.5rem;
   justify-content: center;
  }
  .swiper-slide{
-  width: 180px !important;
+  width: 100% !important;
  }
  .detail svg{
 font-size: 2.5rem;
@@ -323,4 +323,9 @@ width: 2.5rem;
   .current{
     margin-left: auto;
   }
- }
+  .degrees{
+justify-content: center;
+padding-bottom: 1rem;
+  }
+}
+ 
