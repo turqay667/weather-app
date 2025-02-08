@@ -20,8 +20,8 @@ input:focus{
   outline: none;
   color: white;
 }
-button{
-  background: #409AC7 !important;
+.slick-arrow{
+  display: none !important;
 }
 p{
   font-size: 20px;

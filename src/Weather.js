@@ -35,26 +35,18 @@ const fetchWeather=async()=>{
 const response=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.REACT_APP_API_KEY}`)
 const currentData=await response.json()
 const {lat, lon}=currentData.coord
-const dailyResponse=await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_API_KEY}&units=metric`)
+const dailyResponse=await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_API_KEY}`)
 const dailyData=await dailyResponse.json()
-const dailyForecast=dailyData.list.filter((item,index)=>index%8===0
-);
-const currentTime=new Date()
-const hourlyData=dailyData.list.filter((item)=>{
-const hour=new Date(item['dt_txt'])
-const hours=new Date(currentTime.getTime()+24*60*60*1000)
-return hour>currentTime && hour <=hours
-})
+console.log(dailyData)
+const dailyForecast=dailyData.daily.slice(0,5)
 
 setData(currentData)
 setDaily(dailyForecast)
-setHourly(hourlyData)
+setHourly(dailyData.hourly)
 }
 
   fetchWeather()
 },[location,lat,lon])
-
-console.log(data)
 const handleSubmit=(event)=>{
 event.preventDefault()
 setLocation(input)
@@ -189,7 +181,6 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 }
 <div className="container mt-5">
 
-
 <Hourly hourly={hourly} degree={degree} temp={temp}/> 
 <div className="mt-5 row">
 <Daily daily={daily} degree={degree} temp={temp}/>
@@ -199,9 +190,7 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
 <Map data={data}/>
 </MapContainer>
-
 </div>
-
 </div>
 </div>
 </div>
