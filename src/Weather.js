@@ -81,9 +81,9 @@ return (
 </div>
   </div>
 <div className="col-md-4">
- <form onSubmit={handleSubmit} className='form-search'>
+ <form onSubmit={handleSubmit} className='form-search' >
     <div className='search-box'>
-<input type="text" value={input} onChange={(e)=>setInput(e.target.value)}  placeholder="Enter city name" className='searchInput'/>
+<input type="text" value={input} onChange={(e)=>setInput(e.target.value)}  placeholder="Enter city name" className='searchInput'  autoComplete="yess"/>
 <i className='search-icon'><BsSearch/></i>
 </div>
 
