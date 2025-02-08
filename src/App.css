@@ -206,10 +206,7 @@ outline: none;
   justify-content: center;
   gap: 3rem;
 }
-.details{
-  gap: 2rem;
-  padding: 20px;
-}
+
 .day{
   display: flex;
   align-items: center;
@@ -326,9 +323,13 @@ width: 2.5rem;
   .degrees{
 justify-content: center;
 padding-bottom: 1rem;
+display: none !important;
   }
   .hours{
     max-width: inherit !important;
+  }
+  .detail{
+    padding-bottom: 15px;
   }
 }
  

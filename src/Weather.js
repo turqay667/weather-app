@@ -6,6 +6,7 @@ import { FaCloudRain } from "react-icons/fa";
 import { IoIosSunny } from "react-icons/io";
 import { TiWaves } from "react-icons/ti";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { CiSun } from "react-icons/ci"
 import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvent } from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
 import {faWind,faSun, faDroplet, faTemperatureHalf, faCloud, faMoon} from "@fortawesome/free-solid-svg-icons";
@@ -13,13 +14,14 @@ import Error from "./Error";
 import Hourly from "./Hourly";
 import Daily from "./Daily";
 import Footer from "./Footer";
-import { MdContactless, MdOutlineVisibility } from "react-icons/md";
+import { MdContactless, MdOutlineVisibility, MdOutlineWbSunny } from "react-icons/md";
 
 import Map from "./Map";
 const Weather=({lat,lon})=>{
 const [data,setData]=useState([])
 const [daily,setDaily]=useState([])
 const [hourly, setHourly]=useState([])
+const [uvi,setUvi]=useState('')
 const [degree,setDegree]=useState('C')
 const [location,setLocation]=useState('Baku')
 const [input,setInput]=useState('')
@@ -39,8 +41,8 @@ const dailyResponse=await fetch(`https://api.openweathermap.org/data/3.0/onecall
 const dailyData=await dailyResponse.json()
 console.log(dailyData)
 const dailyForecast=dailyData.daily.slice(0,5)
-
 setData(currentData)
+setUvi(dailyData.current.uvi)
 setDaily(dailyForecast)
 setHourly(dailyData.hourly)
 }
@@ -117,12 +119,11 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 </div>
 </div>
 <div className='details col-md-8 cardbox'>
-<h4>Todays Highlights</h4>
+<h4 className="pt-4 text-center">Todays Highlights</h4>
 <div className='row features card_box'>
-<div className='row sun'>
 <p className="details-title text-info">Sunrise & Sunset</p>
 <div className="detail col-md-4">
-<FontAwesomeIcon icon={faSun } />
+<MdOutlineWbSunny />
 <div>
 <p >Sunrise</p>
 <p className='bold'>{new Date(data.sys.sunrise*1000).toLocaleTimeString('en-US',{
@@ -131,6 +132,7 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 })}</p>
 </div>
 </div>
+
 <div className="detail col-md-4">
 <FontAwesomeIcon icon={faMoon} />
 <div>
@@ -141,8 +143,15 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 })}</p>
 </div>
 </div>
+<div className="detail col-md-4">
+<FontAwesomeIcon icon={faSun} />
+<div>
+<p >UV index</p>
+<p className='bold'>{uvi}</p>
 </div>
 </div>
+</div>
+
 <div className="row features card_box pt-3">
 <div className='feels col-md-4'>
 <div className="detail">
