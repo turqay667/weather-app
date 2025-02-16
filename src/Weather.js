@@ -39,7 +39,6 @@ const currentData=await response.json()
 const {lat, lon}=currentData.coord
 const dailyResponse=await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_API_KEY}`)
 const dailyData=await dailyResponse.json()
-console.log(dailyData)
 const dailyForecast=dailyData.daily.slice(0,5)
 setData(currentData)
 setUvi(dailyData.current.uvi)
