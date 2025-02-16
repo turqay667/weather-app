@@ -2,7 +2,6 @@ import { FaCloud, FaRainbow } from "react-icons/fa"
 import { IoIosSunny } from "react-icons/io";
 import  {Swiper,SwiperSlide}  from "swiper/react";
 function Daily({daily, degree, temp}){
-console.log(daily)
     return (
       <>
       <h2 className="mb-5 pt-5">5-Day Forecast </h2>

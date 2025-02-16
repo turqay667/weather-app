@@ -46,7 +46,7 @@ const Hourly=({hourly, degree, temp})=>{
     };
     return (
       <>
-<h2 className="pt-4 pb-4 text-center"> Today at</h2>  
+<h2 className="pt-4 pb-4"> Today at</h2>  
   <div className="row">
         { hourlyData && hourlyData.length>0 ? (       
         <Slider  {...settings}>

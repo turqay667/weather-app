@@ -1,12 +1,9 @@
 import {BsSearch} from "react-icons/bs"
 import { useEffect, useState } from 'react';
-import { FaMoon, FaTemperatureLow } from "react-icons/fa";
 import { FaCloud } from "react-icons/fa";
 import { FaCloudRain } from "react-icons/fa";
 import { IoIosSunny } from "react-icons/io";
-import { TiWaves } from "react-icons/ti";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { CiSun } from "react-icons/ci"
 import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvent } from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
 import {faWind,faSun, faDroplet, faTemperatureHalf, faCloud, faMoon} from "@fortawesome/free-solid-svg-icons";
@@ -17,6 +14,7 @@ import Footer from "./Footer";
 import { MdContactless, MdOutlineVisibility, MdOutlineWbSunny } from "react-icons/md";
 
 import Map from "./Map";
+import About from "./About";
 const Weather=({lat,lon})=>{
 const [data,setData]=useState([])
 const [daily,setDaily]=useState([])
@@ -70,8 +68,8 @@ return (
 <div className='row'>
   <div className="col-md-8">
   <div className="degrees d-flex gap-2">
-<a className="btn btn-primary" onClick={()=>setDegree('C')}>C</a>
-<a className="btn btn-success" onClick={()=>setDegree('K')}>K</a>
+<button className="btn btn-primary" onClick={()=>setDegree('C')}>C</button>
+<button className="btn btn-success" onClick={()=>setDegree('K')}>K</button>
 </div>
   </div>
 <div className="col-md-4">
@@ -203,6 +201,7 @@ url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
 </div>
 </div>
 {/* <NewsLetter/> */}
+<About/>
 <Footer/>
 </div>
 
