@@ -18,34 +18,55 @@ import About from "./About";
 const Weather=({lat,lon})=>{
 const [data,setData]=useState([])
 const [daily,setDaily]=useState([])
+// const [coords,setCoords]=useState({
+//    lat:0,
+//    lan:0
+// })
 const [hourly, setHourly]=useState([])
 const [uvi,setUvi]=useState('')
 const [degree,setDegree]=useState('C')
 const [location,setLocation]=useState('Baku')
 const [input,setInput]=useState('')
-
 const d=new Date()
 const date=d.getDate()
 const day=d.toLocaleString("default",{weekday:'long'})
 const month=d.toLocaleString("default",{month:'long'})
+//  const handleLocation=()=>{
 
-useEffect(()=>{
+//   if(navigator.geolocation){
+//     navigator.geolocation.getCurrentPosition((position)=>{
+//       let {coords}=position
+//       let filteredData={
+//         latitude:coords.latitude,
+//         longitude:coords.longitude
+//       } 
+//       setCoords(filteredData)
+//     })
+//   }
+// }
+  useEffect(()=>{
 
 const fetchWeather=async()=>{
-const response=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.REACT_APP_API_KEY}`)
+ const response=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.REACT_APP_API_KEY}`)
 const currentData=await response.json()
-const {lat, lon}=currentData.coord
-const dailyResponse=await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_API_KEY}`)
+// setCoords({
+//   lat:currentData.coord.lat,
+//   lon:currentData.coord.lon
+// })
+let {lat, lon}=currentData.coord
+const dailyResponse=await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_API_KEY}`)
+
 const dailyData=await dailyResponse.json()
-const dailyForecast=dailyData.daily.slice(0,5)
+console.log(dailyData)
+const dailyForecast=dailyData.list.slice(0,5)
 setData(currentData)
-setUvi(dailyData.current.uvi)
+// setUvi(dailyData.current.uvi)
 setDaily(dailyForecast)
-setHourly(dailyData.hourly)
+setHourly(dailyData.list)
 }
 
   fetchWeather()
-},[location,lat,lon])
+},[location, lat, lon])
 const handleSubmit=(event)=>{
 event.preventDefault()
 setLocation(input)
@@ -77,6 +98,14 @@ return (
     <div className='search-box'>
 <input type="text" value={input} onChange={(e)=>setInput(e.target.value)}  placeholder="Enter city name" className='searchInput'  autoComplete="yess"/>
 <i className='search-icon'><BsSearch/></i>
+{/* <ul>
+  {
+    input ? <li> <a>Use my location</a></li> 
+    : <></>
+    
+  }
+
+</ul> */}
 </div>
 
   </form>
@@ -140,13 +169,13 @@ data.weather[0].main==='Clouds' ? <a><FaCloud/> </a> :  data.weather[0].main==='
 })}</p>
 </div>
 </div>
-<div className="detail col-md-4">
+{/* <div className="detail col-md-4">
 <FontAwesomeIcon icon={faSun} />
 <div>
 <p >UV index</p>
 <p className='bold'>{uvi}</p>
 </div>
-</div>
+</div> */}
 </div>
 
 <div className="row features card_box pt-3">

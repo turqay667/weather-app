@@ -58,7 +58,7 @@ const Hourly=({hourly, degree, temp})=>{
                       <div className="hours card_box" key={index}>
         <div className="day">{hour}:00</div>   
         <a className="icon">{data.weather[0].description.includes('rain') ? <FaCloudRain/> : data.weather[0].description.includes('clouds')  ? ( <FaCloud/> ) : <IoIosSunny/>}</a>
-<div className="temperature">{(data.temp-272+temp).toFixed(0)}°{degree}</div> 
+<div className="temperature">{(data.main.temp-272+temp).toFixed(0)}°{degree}</div> 
                       </div>      
               </>
                    );

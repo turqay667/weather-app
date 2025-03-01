@@ -14,8 +14,8 @@ function Daily({daily, degree, temp}){
           month:"short",
       
         })
-         const temp_min=data.temp.min-273.15
-         const temp_max=data.temp.max-273.15
+         const temp_min=data.main.temp_min-273.15
+         const temp_max=data.main.temp_max-273.15
          const condition=data.weather[0].main
            return (
             
