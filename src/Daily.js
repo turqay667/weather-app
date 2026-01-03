@@ -1,6 +1,5 @@
-import { FaCloud, FaRainbow } from "react-icons/fa"
+import { FaCloud} from "react-icons/fa"
 import { IoIosSunny } from "react-icons/io";
-import  {Swiper,SwiperSlide}  from "swiper/react";
 function Daily({daily, degree, temp}){
     return (
       <>
@@ -12,7 +11,6 @@ function Daily({daily, degree, temp}){
           weekday:"short",
           day:'numeric',
           month:"short",
-      
         })
          const temp_min=data.main.temp_min-273.15
          const temp_max=data.main.temp_max-273.15
@@ -20,7 +18,7 @@ function Daily({daily, degree, temp}){
            return (
             
 <div key={index} className="day">
-<a className="icon">{condition==='Clouds' ? <FaCloud/> : <IoIosSunny/>}</a>
+<span className="icon">{condition==='Clouds' ? <FaCloud/> : <IoIosSunny/>}</span>
 <div className="temperature">{((temp_max+temp).toFixed())}° / {((temp_min+temp).toFixed())} °{degree}</div>
 <div className="date">{date}</div>
 

@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import { useMap } from "react-leaflet";
 const Map=({data})=>{
+  
     const map=useMap()  
     
         useEffect(()=>{
@@ -15,10 +16,5 @@ const Map=({data})=>{
         },[data, map])
 
 return null;
-    
-     
-   
-  
-   
 }
 export default Map;
