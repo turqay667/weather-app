@@ -30,12 +30,12 @@ const Weather = ({ lat, lon }) => {
   useEffect(() => {
     const fetchWeather = async () => {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.REACT_APP_API_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.REACT_APP_HOURLY_API}`
       );
       const currentData = await response.json();
       let { lat, lon } = currentData.coord;
       const dailyResponse = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_API_KEY}`
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_DAILY_API}`
       );
 
       const dailyData = await dailyResponse.json();
